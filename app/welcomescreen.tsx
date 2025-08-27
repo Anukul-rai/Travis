@@ -2,6 +2,7 @@ import { Image, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'r
 import React from 'react';
 import { router } from 'expo-router';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
+import { COLORS } from '@/constants/Theme';
 
 export default function WelcomeScreen() {
     return (
@@ -34,7 +35,7 @@ const styles = StyleSheet.create({
         flex: 1, 
         justifyContent: "center", 
         alignItems: "center",
-        backgroundColor: '#d5d1d1ed',
+        backgroundColor: COLORS.background,
         gap: 10,
     },
     titleContainer: {
@@ -60,7 +61,7 @@ const styles = StyleSheet.create({
         marginTop: 30,
     },
     button: {
-        backgroundColor: '#e24a1c',
+        backgroundColor: COLORS.button,
         paddingVertical: hp(2),
         paddingHorizontal: wp(10),
         borderRadius: 10,
