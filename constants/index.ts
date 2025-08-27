@@ -9,13 +9,26 @@ export const dummyData = [
     },
     {
         role: 'user',
-        content: 'Can you create an image of a futuristic city?',
+        content: 'Can you show me a futuristic city?',
     },
     {
         role: 'assistant',
-        content: 'Sure! https://www.stocksy.com/photo/1841885/landscape-of-rustic-city-in-morocco',
-    }
-    ,{
-
-    }
+        content: 'https://picsum.photos/400/300?random=1', 
+    },
+    {
+        role: 'user',
+        content: 'That’s adorable 😍. How about a mountain view?',
+    },
+    {
+        role: 'assistant',
+        content: 'https://picsum.photos/400/250?random=2', 
+    },
+    {
+        role: 'user',
+        content: 'Thanks, that looks amazing!',
+    },
+    {
+        role: 'assistant',
+        content: 'You’re welcome! Do you want me to create an image of something else?',
+    },
 ]
