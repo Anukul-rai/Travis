@@ -20,6 +20,19 @@ export default function ChatScreen() {
     const clear=()=>{
         setMsg([])
     }
+    const onSpeechStart= ()=>{
+        // setSpeaking(true)
+        console.log('Speech start ')
+    }
+    const onSpeechEnd= ()=>{
+        console.log('Speech end ')
+    }
+    const onSpeechResults= ()=>{
+        console.log('Speech results ')
+    }
+    const onSpeechError= ()=>{
+        console.log('Speech error ')
+    }
     useEffect(()=>{
         Voice.onSpeechStart=onSpeechStart
         Voice.onSpeechEnd=onSpeechEnd
