@@ -20,19 +20,39 @@ export default function ChatScreen() {
     const clear=()=>{
         setMsg([])
     }
-    const onSpeechStart= ()=>{
+    const onSpeechStart= (e:any) =>{
         // setSpeaking(true)
         console.log('Speech start ')
     }
-    const onSpeechEnd= ()=>{
+    const onSpeechEnd= (e:any)=>{
+        setRecording(false)
         console.log('Speech end ')
     }
-    const onSpeechResults= ()=>{
-        console.log('Speech results ')
+    const onSpeechResults= (e:any)=>{
+        console.log('Speech results ',e)
     }
-    const onSpeechError= ()=>{
-        console.log('Speech error ')
+    const onSpeechError= (e:any)=>{
+        console.log('Speech error ',e)
     }
+    const startRecording = async()=>{
+        setRecording(true)
+        try {
+            await Voice.start('en-US')
+            setSpeaking(true)
+        } catch (error) {
+            console.log('Error starting Voice recognition: ', error);
+        }
+    }
+    const stopRecording = async()=>{
+        try {
+            await Voice.stop()
+            setRecording(false)
+            setSpeaking(false)
+        } catch (error) {
+            console.log('Error stopping Voice recognition: ', error);
+        }
+    }
+
     useEffect(()=>{
         Voice.onSpeechStart=onSpeechStart
         Voice.onSpeechEnd=onSpeechEnd
@@ -101,11 +121,13 @@ export default function ChatScreen() {
                     }
                     {
                         recording ? (
-                            <TouchableOpacity onPress={() => setRecording(false)}>
+                            <TouchableOpacity onPress={stopRecording}>
+                                {/* stop recording */}
                                 <Image source={require('../assets/images/micgf.gif')} style={{height:80,width:80,borderRadius:50}}/>
                             </TouchableOpacity>
                         ) : (
-                            <TouchableOpacity onPress={() => setRecording(true)}>
+                            <TouchableOpacity onPress={startRecording}>
+                                {/* start recording */}
                                 <Image source={require('../assets/images/mic.png')} style={{width:80,height:80,borderRadius:50}} />
                             </TouchableOpacity>
                         )
@@ -133,7 +155,7 @@ const styles = StyleSheet.create({
         marginHorizontal: 15,
         marginTop: 10,
         borderRadius: 10,
-        paddingBottom: 20, // enough for mic row
+        paddingBottom: 20, 
     },
     bubble: {
         marginVertical: 5,
@@ -176,15 +198,5 @@ const styles = StyleSheet.create({
         paddingVertical: 5,
         elevation: 3,
     },
-    // input: {
-    //     flex: 1,
-    //     fontSize: 16,
-    //     padding: 8,
-    // },
-    // sendButton: {
-    //     backgroundColor: '#3baf30',
-    //     padding: 10,
-    //     borderRadius: 25,
-    //     marginLeft: 10,
-    // },
+
 })
